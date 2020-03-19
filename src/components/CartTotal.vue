@@ -5,7 +5,12 @@
 
 <script>
 export default {
-    name: 'CartTotal'
+    name: 'CartTotal',
+    computed: {
+        vuexCartData() {
+            return this.$store.state.cart;
+        }
+    }
 }
 </script>
 

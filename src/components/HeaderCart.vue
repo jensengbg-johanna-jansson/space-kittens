@@ -1,13 +1,18 @@
 <template>
     <div class="cartContainer">
         <img src="../assets/graphics/bag.svg" alt="carticon" class="cartIcon">
-        <span class="cartCounter">7</span>
+        <span class="cartCounter">{{ vuexCartData }}</span>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'HeaderCart'
+    name: 'HeaderHamburger',
+    computed: {
+        vuexCartData() {
+            return this.$store.state.numberOfCartItems;
+        }
+    }
 }
 </script>
 
