@@ -1,5 +1,6 @@
 <template>
   <div class="introContainer">
+      <h1>Hello World</h1>
   </div>
 </template>
 
@@ -10,5 +11,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.introContainer {
+    height: 100vh;
+    width: 100%;
+}
 </style>
