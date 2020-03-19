@@ -10,5 +10,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  .statusContainer {
+    width: 100vw;
+    height: 100vh;
+    background: $orange;
+  }
 </style>
