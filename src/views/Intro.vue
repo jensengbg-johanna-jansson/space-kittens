@@ -1,6 +1,6 @@
 <template>
   <div class="introContainer">
-      <h1>Hello World</h1>
+      <h1 class="introHeader">Hello World</h1>
   </div>
 </template>
 
@@ -11,8 +11,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css?family=Rufina&display=swap');
+
 .introContainer {
     height: 100vh;
     width: 100%;
+    display: flex;
 }
 </style>
