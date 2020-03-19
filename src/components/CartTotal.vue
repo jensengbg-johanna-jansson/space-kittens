@@ -1,11 +1,11 @@
 <template>
-  <div class="aboutContainer">
-  </div>
+    <div class="cartTotalContainer">
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'About'
+    name: 'CartTotal'
 }
 </script>
 

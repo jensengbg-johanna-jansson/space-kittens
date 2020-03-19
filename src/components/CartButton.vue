@@ -1,11 +1,11 @@
 <template>
-  <div class="aboutContainer">
-  </div>
+    <div class="CartButtonContainer">
+    </div>
 </template>
 
 <script>
 export default {
-  name: 'About'
+    name: 'CartButton'
 }
 </script>
 
