@@ -1,6 +1,6 @@
 <template>
     <div class="menuItemContainer">
-        <MenuButton class="menuButton" :menuItemId="menuMenuItemData.id" />
+        <MenuButton class="menuButton" :menuItemData="menuMenuItemData" />
         <h2 class="heading coffeeName">{{ menuMenuItemData.title }}</h2>
         <span class="divider"></span>
         <p class="coffeeDescription">{{ menuMenuItemData.desc }}</p>
@@ -15,24 +15,11 @@ export default {
     components: {
         MenuButton
     },
-    /* 
-        // Datan som skickats med v-for i Menu.vue
-        // Vid sammanfogning med övriga componenter ta bort dessa kommentarer och använd
-        // 'props' nedan istället för dummy-objektet i 'data()' 
     props: {
         menuMenuItemData: Object
     },
-    */
     data() {
         return {
-                // Dummy-objekt för att testa datakopplingen mellan DOMen och vue
-                // Ta bort detta objekt när API:et är kopplat
-            menuMenuItemData: {
-                "id":1,
-                "title":"Bryggkaffe",
-                "desc":"Bryggd på månadens bönor.",
-                "price":39
-            }
         }
     }
 }
@@ -42,12 +29,13 @@ export default {
     .menuItemContainer {
         width: 100%;
         display: grid;
-        grid-template-columns: min-content min-content 1fr max-content;
+        grid-template-columns: min-content max-content 1fr max-content;
         grid-template-areas: 
             "menuButton coffeeName divider coffeePrice"
             "menuButton coffeeDescription coffeeDescription .";
         color: $brown;
         text-align: left;
+        margin-bottom: 2rem;
 
         .menuButton {
             grid-area: menuButton;
