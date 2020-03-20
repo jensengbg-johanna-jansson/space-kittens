@@ -43,5 +43,7 @@ export default {
     right: 4%;
     font-size: 10px;
     padding-top: 1%;
+      font-family: 'PT Serif';
+
 }
 </style>
