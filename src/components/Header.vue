@@ -19,8 +19,8 @@ export default {
 
 <style lang="scss" scoped>
 .headerContainer {
-    height: 120px;
-    width: 100vw;
+    height: 8rem;
+    width: 100%;
     background: url('../assets/graphics/graphics-header.svg') no-repeat;
     display: flex;
     justify-content: space-between;
