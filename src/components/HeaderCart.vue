@@ -1,6 +1,6 @@
 <template>
     <div class="cartContainer">
-        <img src="../assets/graphics/bag.svg" alt="carticon" class="cartIcon">
+        <button class="cartIcon" @click="toggle = !toggle"><img src="../assets/graphics/bag.svg" alt="carticon"></button>
         <span class="cartCounter">{{ vuexCartData }}</span>
     </div>
 </template>
@@ -8,6 +8,16 @@
 <script>
 export default {
     name: 'HeaderHamburger',
+    data() {
+        return {
+            toggle: false
+        }
+    },
+    watch: {
+        toggle() {
+            this.$store.commit('toggleCart', this.toggle);
+        }
+    },
     computed: {
         vuexCartData() {
             return this.$store.state.numberOfCartItems;
@@ -25,6 +35,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 1;
 }
 
 .cartIcon {

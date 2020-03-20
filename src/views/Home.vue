@@ -1,5 +1,6 @@
 <template>
   <div class="homeContainer">
+    <Cart v-if="vuexShowCart" />
     <Header />
     <h1 class="mainHeader">Meny</h1>
     <Menu />
@@ -10,13 +11,20 @@
 <script>
 import Header from '../components/Header'
 import Menu from '../components/Menu'
+import Cart from '../components/Cart'
 import Footer from '../components/Footer'
 export default {
   name: 'Home',
   components: {
     Header,
     Menu,
+    Cart,
     Footer
+  },
+  computed: {
+    vuexShowCart() {
+      return this.$store.state.showCart;
+    }
   }
 }
 </script>

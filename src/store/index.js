@@ -56,7 +56,8 @@ export default new Vuex.Store({
     order: {
       eta: 13,
       orderNr: 'SW921389B',
-    }
+    },
+    showCart: false
   },
   mutations: {
     addItemToCart (state, menuItem) {
@@ -65,6 +66,9 @@ export default new Vuex.Store({
     increaseQuantity (state, cartItem) {
         const item = state.cart.find(item => item.id === cartItem.id);
         item.quantity++;
+    },
+    toggleCart (state, toggle) {
+      state.showCart = toggle;
     }
   },
   actions: {
