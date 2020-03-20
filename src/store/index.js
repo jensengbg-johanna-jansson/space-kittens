@@ -59,6 +59,9 @@ export default new Vuex.Store({
     }
   },
   mutations: {
+    AddItemToCart (state, menuItem) {
+      state.cart.push(menuItem);
+    }
   },
   actions: {
   },

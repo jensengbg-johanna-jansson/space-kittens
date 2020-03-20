@@ -1,6 +1,6 @@
 <template>
     <div class="menuItemContainer">
-        <MenuButton class="menuButton" :menuItemId="menuMenuItemData.id" />
+        <MenuButton class="menuButton" :menuItemData="menuMenuItemData" />
         <h2 class="heading coffeeName">{{ menuMenuItemData.title }}</h2>
         <span class="divider"></span>
         <p class="coffeeDescription">{{ menuMenuItemData.desc }}</p>
