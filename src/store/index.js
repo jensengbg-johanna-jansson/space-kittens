@@ -59,8 +59,12 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    AddItemToCart (state, menuItem) {
+    addItemToCart (state, menuItem) {
       state.cart.push(menuItem);
+    },
+    increaseQuantity (state, cartItem) {
+        const item = state.cart.find(item => item.id === cartItem.id);
+        item.quantity++;
     }
   },
   actions: {
