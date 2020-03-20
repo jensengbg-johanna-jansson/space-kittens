@@ -19,7 +19,7 @@ export default {
 
 <style lang="scss" scoped>
 .headerContainer {
-    height: 100vh;
+    height: 8rem;
     width: 100%;
     background: url('../assets/graphics/graphics-header.svg') no-repeat;
     display: flex;
