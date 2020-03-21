@@ -1,6 +1,6 @@
 <template>
     <div class="cartContainer">
-        <img src="../assets/graphics/bag.svg" alt="carticon" class="cartIcon">
+        <button class="cartIcon" @click="toggle = !toggle"><img src="../assets/graphics/bag.svg" alt="carticon"></button>
         <span class="cartCounter" :class="{ popAnimation: addAnimation }">{{ vuexCartData }}</span>
     </div>
 </template>
@@ -10,7 +10,17 @@ export default {
     name: 'HeaderCart',
     data() {
         return {
+            toggle: false,
             addAnimation: false
+        }
+    },
+    beforeDestroy() {
+        this.toggle = false;
+        this.$store.commit('toggleCart', this.toggle);
+    },
+    watch: {
+        toggle() {
+            this.$store.commit('toggleCart', this.toggle);
         }
     },
     computed: {
@@ -28,16 +38,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .cartContainer {
-        background: black;
-        height: 50px;
-        width: 50px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
+.cartContainer {
+    background: black;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
     .cartIcon {
         height: 20px;
         width: 20px;
