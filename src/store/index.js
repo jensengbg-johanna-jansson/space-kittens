@@ -49,7 +49,7 @@ export default new Vuex.Store({
 
         // Dummy-variable
         // Change number to '0' when adding the real cartItem counter
-    numberOfCartItems: 3,
+    numberOfCartItems: 2,
 
       // Dummy-object
       // Change values to '0' and '' when adding the real order fetch function
@@ -62,10 +62,12 @@ export default new Vuex.Store({
   mutations: {
     addItemToCart (state, menuItem) {
       state.cart.push(menuItem);
+      state.numberOfCartItems++;
     },
     increaseQuantity (state, cartItem) {
         const item = state.cart.find(item => item.id === cartItem.id);
         item.quantity++;
+        state.numberOfCartItems++;
     },
     changeQuantity (state, payload) {
       const item = state.cart.find(item => item.id === payload.cartItemId);
