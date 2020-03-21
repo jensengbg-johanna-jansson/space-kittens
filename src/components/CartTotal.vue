@@ -3,16 +3,32 @@
         <h2 class="total heading">Total</h2>
         <span class="divider"></span>
         <p class="desc">inkl moms + drönarleverans</p>
-        <p class="price heading">343 kr</p>
+        <p class="price heading">{{ cartTotal }} kr</p>
     </div>
 </template>
 
 <script>
 export default {
     name: 'CartTotal',
+    methods: {
+        countTotal() {
+            let cartTotal = 0;
+            for(let i = 0; i < this.vuexCartData.length; i++) {
+                let itemPrice = this.vuexCartData[i].price;
+                let itemQuantity = this.vuexCartData[i].quantity;
+                let itemTotal = itemPrice * itemQuantity;
+                
+                cartTotal += itemTotal;
+            }
+            return cartTotal;
+        }
+    },
     computed: {
         vuexCartData() {
             return this.$store.state.cart;
+        },
+        cartTotal() {
+            return this.countTotal();
         }
     }
 }
@@ -29,6 +45,7 @@ export default {
         color: $brown;
         text-align: left;
         margin-bottom: 2rem;
+        margin-top: 1rem;
         
         .heading {
             font-size: 1.4375rem;

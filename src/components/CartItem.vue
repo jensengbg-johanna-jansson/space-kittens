@@ -6,7 +6,7 @@
         <h2 class="coffeeName">{{ cartCartItemData.title }}</h2>
         <span class="divider"></span>
         <p class="coffeePrice">{{ cartCartItemData.price }} kr</p>
-        <CartQuantityInput />
+        <CartQuantityInput class="coffeeQuantity" :cartItemData="cartCartItemData" />
     </div>
 </template>
 
@@ -17,24 +17,8 @@ export default {
     components: {
         CartQuantityInput
     },
-    /* 
-        // Datan som skickats med v-for i Cart.vue
-        // Vid sammanfogning med övriga componenter använd 'props' nedan istället för dummy-objektet i 'data()' 
     props: {
         cartCartItemData: Object
-    },
-    */
-    data() {
-        return {
-                // Dummy-objekt
-                // Ta bort detta objekt när API:et är kopplat
-            cartCartItemData: {
-                "id":2,
-                "title":"Caffè Doppio",
-                "price":49,
-                "quantity":1
-            }
-        }
     }
 }
 </script>
@@ -49,7 +33,7 @@ export default {
             "coffeePrice . quantity";
         color: $brown;
         text-align: left;
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
 
         .coffeeName {
             grid-area: coffeeName;
@@ -68,6 +52,9 @@ export default {
             font-size: 0.75rem;
             font-family: 'Work Sans', sans-serif;
             margin-top: 0.3rem;
+        }
+        .coffeeQuantity {
+            grid-area: quantity;
         }
     }
 </style>

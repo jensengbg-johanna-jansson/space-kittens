@@ -21,6 +21,25 @@ export default {
     Cart,
     Footer
   },
+  methods: {
+    preventScroll() {
+      if(this.vuexShowCart){
+        document.getElementById('app').style.overflow = 'hidden';
+        document.getElementById('app').style.height = '100vh';
+      } else {
+        document.getElementById('app').style.overflow = 'initial';
+        document.getElementById('app').style.height = 'initial';
+      } 
+    }
+  },
+  mounted() {
+    this.preventScroll();
+  },
+  watch: {
+    vuexShowCart: function() {
+      this.preventScroll();
+    }
+  },
   computed: {
     vuexShowCart() {
       return this.$store.state.showCart;

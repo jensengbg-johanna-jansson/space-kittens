@@ -1,10 +1,15 @@
 <template>
-    <button class="cartButtonContainer">Take my money!</button>
+    <button class="cartButtonContainer" @click="sendOrder">Take my money!</button>
 </template>
 
 <script>
 export default {
-    name: 'CartButton'
+    name: 'CartButton',
+    methods: {
+        sendOrder() {
+            this.$router.push('status');
+        }
+    }
 }
 </script>
 

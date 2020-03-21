@@ -67,6 +67,18 @@ export default new Vuex.Store({
         const item = state.cart.find(item => item.id === cartItem.id);
         item.quantity++;
     },
+    changeQuantity (state, payload) {
+      const item = state.cart.find(item => item.id === payload.cartItemId);
+      if(payload.action === 'add') {
+        item.quantity++;
+      } else if(payload.action === 'subtract') {
+        if(item.quantity != 0) {
+          item.quantity--;
+        }
+      } else {
+        console.log('Error: Could not change quantity');
+      }
+    },
     toggleCart (state, toggle) {
       state.showCart = toggle;
     }

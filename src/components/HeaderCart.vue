@@ -13,6 +13,10 @@ export default {
             toggle: false
         }
     },
+    beforeDestroy() {
+        this.toggle = false;
+        this.$store.commit('toggleCart', this.toggle);
+    },
     watch: {
         toggle() {
             this.$store.commit('toggleCart', this.toggle);
