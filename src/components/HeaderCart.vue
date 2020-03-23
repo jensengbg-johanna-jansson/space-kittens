@@ -21,17 +21,15 @@ export default {
     watch: {
         toggle() {
             this.$store.commit('toggleCart', this.toggle);
+        },
+        vuexCartData() {
+            this.addAnimation = true;
+            setTimeout(()=>{ this.addAnimation = false; }, 1000);
         }
     },
     computed: {
         vuexCartData() {
             return this.$store.state.numberOfCartItems;
-        }
-    },
-    watch: {
-        vuexCartData() {
-            this.addAnimation = true;
-            setTimeout(()=>{ this.addAnimation = false; }, 1000);
         }
     }
 }
