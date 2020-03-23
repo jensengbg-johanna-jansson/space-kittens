@@ -86,6 +86,40 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    async getMenu(ctx) {
+      const url = "http://localhost:5000/api/beans";
+      fetch(url, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data) {
+            ctx.commit("setMenu", data["menu"]);
+            console.log(data);
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+    },
+    async sendOrder(ctx) {
+      const url = "http://localhost:5000/api/beans";
+      fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data) {
+            ctx.commit("orderStatus", data);
+            console.log(data);
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+    }
   },
   modules: {
   }
