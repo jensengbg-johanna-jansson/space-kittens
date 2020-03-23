@@ -30,26 +30,9 @@ export default new Vuex.Store({
       },
       {"id":6,"title":"Cortado","desc":"Bryggd på månadens bönor.","price":39}
     ],
-      // Dummy-cart
-      // Remove all objects inside array when adding the AddToCart function
-    cart: [
-      {
-        "id":2,
-        "title":"Caffè Doppio",
-        "price":49,
-        "quantity":1
-      },
-      {
-        "id":4,
-        "title":"Latte Macchiato",
-        "price":49,
-        "quantity":3
-      }
-    ],
+    cart: [],
 
-        // Dummy-variable
-        // Change number to '0' when adding the real cartItem counter
-    numberOfCartItems: 2,
+    numberOfCartItems: 0,
 
       // Dummy-object
       // Change values to '0' and '' when adding the real order fetch function
@@ -64,18 +47,19 @@ export default new Vuex.Store({
       state.cart.push(menuItem);
       state.numberOfCartItems++;
     },
-    increaseQuantity (state, cartItem) {
-        const item = state.cart.find(item => item.id === cartItem.id);
-        item.quantity++;
-        state.numberOfCartItems++;
+    removeItemFromCart (state, cartItemId) {
+      const cartItemArrayIndex = state.cart.map(function(cartItem) { return cartItem.id; }).indexOf(cartItemId);
+      state.cart.splice(cartItemArrayIndex, 1);
     },
     changeQuantity (state, payload) {
       const item = state.cart.find(item => item.id === payload.cartItemId);
       if(payload.action === 'add') {
         item.quantity++;
+        state.numberOfCartItems++;
       } else if(payload.action === 'subtract') {
         if(item.quantity != 0) {
           item.quantity--;
+          state.numberOfCartItems--;
         }
       } else {
         console.log('Error: Could not change quantity');

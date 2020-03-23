@@ -24,7 +24,7 @@ export default {
         },
         vuexCartData() {
             this.addAnimation = true;
-            setTimeout(()=>{ this.addAnimation = false; }, 1000);
+            setTimeout(()=>{ this.addAnimation = false; }, 500);
         }
     },
     computed: {

@@ -14,7 +14,6 @@ export default {
     },
     methods: {
         changeQuantity(action) {
-            console.log(action);
             let payload = {
                 cartItemId: this.cartItemData.id,
                 action: action
@@ -23,8 +22,13 @@ export default {
         }
     },
     watch: {
-        cartItemData() {
-
+        cartItemData: {
+            deep: true,
+            handler() {
+                if(this.cartItemData.quantity === 0) {
+                    this.$store.commit('removeItemFromCart', this.cartItemData.id);
+                }
+            }
         }
     }
 }
