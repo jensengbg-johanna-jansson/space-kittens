@@ -2,7 +2,11 @@
     <div class="cartContainer">
         <div class="cartItemsContainer">
             <h1 class="mainHeading">Din beställning</h1>
-            <CartItemList />
+            <div class="noItems" v-if="vuexNumberOfCartItemsData === 0">
+                <p>Oh no there's no coffee!</p>
+                <p>Quick add some</p>
+            </div>
+            <CartItemList v-else />
             <CartTotal />
             <CartButton />
         </div>
@@ -19,6 +23,11 @@ export default {
         CartTotal,
         CartButton,
         CartItemList
+    },
+    computed: {
+        vuexNumberOfCartItemsData() {
+            return this.$store.state.numberOfCartItems;
+        }
     }
 }
 </script>

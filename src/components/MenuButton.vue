@@ -20,8 +20,11 @@ export default {
         },
         addToCart() {
             if(this.cartItemExist()) {
-                console.log('This one is in');
-                this.$store.commit('increaseQuantity', this.menuItemData);
+                    let payload = {
+                    cartItemId: this.menuItemData.id,
+                    action: 'add'
+                }
+                this.$store.commit('changeQuantity', payload);
             } else {
                 let cartItem = {
                     id: this.menuItemData.id,
@@ -30,10 +33,7 @@ export default {
                     quantity: 1
                 };
                 this.$store.commit('addItemToCart', cartItem);
-                console.log('Added item to cart');
-            }
-            
-            console.log(this.cartItems);
+            }            
         }
     },
     computed: {

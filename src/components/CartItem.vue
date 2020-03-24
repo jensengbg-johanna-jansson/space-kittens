@@ -34,6 +34,7 @@ export default {
         color: $brown;
         text-align: left;
         margin-bottom: 1.5rem;
+        background: #ffffff;
 
         .coffeeName {
             grid-area: coffeeName;
