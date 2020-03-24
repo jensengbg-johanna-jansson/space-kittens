@@ -60,6 +60,12 @@ export default {
                 text-align: center;
                 margin-bottom: 2rem;
             }
+            .noItems {
+                p {
+                    font-family: 'Work Sans', sans-serif;
+                    font-size: 1.2rem;
+                }
+            }
         }
         .cartItemsContainer:after {
             content: '';
