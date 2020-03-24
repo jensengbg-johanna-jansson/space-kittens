@@ -9,6 +9,11 @@ export default {
         sendOrder() {
             this.$router.push('status');
         }
+    },
+    computed: {
+        vuexLoadingOrderData() {
+            return this.$store.state.loadingOrder;
+        }
     }
 }
 </script>

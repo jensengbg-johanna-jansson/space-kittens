@@ -12,17 +12,18 @@ export default new Vuex.Store({
 
       // Dummy-object
       // Change values to '0' and '' when adding the real order fetch function
-    order: {
-      eta: 13,
-      orderNr: 'SW921389B',
-    },
-    showCart: false
+    order: '',
+    showCart: false,
+    loadingOrder: false
   },
   mutations: {
     setMenu (state, menuData) {
       for(let i  = 0; i < menuData.length; i++) {
         state.menu.push(menuData[i]);
       }
+    },
+    setOrder (state, orderData) {
+      state.order = orderData;
     },
     addItemToCart (state, menuItem) {
       state.cart.push(menuItem);
@@ -48,6 +49,9 @@ export default new Vuex.Store({
     },
     toggleCart (state, toggle) {
       state.showCart = toggle;
+    },
+    showLoader (state, loading) {
+      state.loadingOrder = loading;
     }
   },
   actions: {
@@ -76,8 +80,9 @@ export default new Vuex.Store({
         .then(response => response.json())
         .then(data => {
           if (data) {
-            ctx.commit("orderStatus", data);
+            ctx.commit("setOrder", data);
             console.log(data);
+            ctx.commit("showLoader", false);
           }
         })
         .catch(error => {
