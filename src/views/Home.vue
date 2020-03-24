@@ -1,7 +1,8 @@
 <template>
   <div class="homeContainer">
-    <Cart v-if="vuexShowCart" />
+    <Navigation v-if="vuexShowMenu" />
     <Header />
+    <Cart v-if="vuexShowCart" />
     <h1 class="mainHeader">Meny</h1>
     <Menu />
     <Footer />
@@ -13,13 +14,15 @@ import Header from '../components/Header'
 import Menu from '../components/Menu'
 import Cart from '../components/Cart'
 import Footer from '../components/Footer'
+import Navigation from '../components/Navigation'
 export default {
   name: 'Home',
   components: {
     Header,
     Menu,
     Cart,
-    Footer
+    Footer,
+    Navigation
   },
   methods: {
     preventScroll() {
@@ -43,6 +46,9 @@ export default {
   computed: {
     vuexShowCart() {
       return this.$store.state.showCart;
+    },
+    vuexShowMenu() {
+      return this.$store.state.isOpen;
     }
   }
 }

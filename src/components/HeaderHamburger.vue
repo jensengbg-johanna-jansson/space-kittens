@@ -1,12 +1,27 @@
 <template>
-    <div class="hamburgerContainer">
+    <div class="hamburgerContainer" @click="handleClick">
         <img src="../assets/graphics/navicon.svg" alt="navicon" class="hamburgerIcon">
     </div>
 </template>
 
 <script>
 export default {
-    name: 'HeaderHamburger'
+    name: 'HeaderHamburger',
+    data() {
+        return {
+            isOpen: false
+        }
+    },
+    methods: {
+        handleClick() {
+            this.isOpen = !this.isOpen 
+        }
+    },
+    watch: {
+        isOpen() {
+            this.$store.commit('toggleMenu', this.isOpen)
+        }
+    }
 }
 </script>
 
@@ -19,6 +34,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 }
 
 .hamburgerIcon {

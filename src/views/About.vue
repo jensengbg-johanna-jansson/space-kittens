@@ -1,5 +1,6 @@
 <template>
   <div class="aboutContainer">
+    <Navigation v-if="vuexShowMenu" />
     <Header />
     <div class="aboutText">
       <h1 class="aboutHeader">Vårt kaffe</h1>
@@ -16,11 +17,18 @@
 </template>
 
 <script>
+import Navigation from '../components/Navigation'
 import Header from '../components/Header'
 export default {
   name: 'About',
   components: {
-    Header
+    Header,
+    Navigation
+  },
+  computed: {
+    vuexShowMenu() {
+      return this.$store.state.isOpen;
+    }
   }
 }
 </script>

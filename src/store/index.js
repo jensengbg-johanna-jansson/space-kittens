@@ -10,10 +10,9 @@ export default new Vuex.Store({
 
     numberOfCartItems: 0,
 
-      // Dummy-object
-      // Change values to '0' and '' when adding the real order fetch function
     order: '',
     showCart: false,
+    isOpen: false,
     loadingOrder: false
   },
   mutations: {
@@ -28,6 +27,9 @@ export default new Vuex.Store({
     addItemToCart (state, menuItem) {
       state.cart.push(menuItem);
       state.numberOfCartItems++;
+    },
+    toggleMenu (state, toggle) {
+      state.isOpen = toggle
     },
     removeItemFromCart (state, cartItemId) {
       const cartItemArrayIndex = state.cart.map(function(cartItem) { return cartItem.id; }).indexOf(cartItemId);
