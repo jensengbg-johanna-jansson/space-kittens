@@ -30,6 +30,11 @@ export default {
         vuexNumberOfCartItemsData() {
             return this.$store.state.numberOfCartItems;
         }
+    },
+    computed: {
+        vuexLoadingOrderData() {
+            return this.$store.state.loadingOrder;
+        }
     }
 }
 </script>
