@@ -1,21 +1,45 @@
 <template>
-  <div class="statusContainer">
-    <p class="ordernumber">Orderummer <span class="ordernumberNumber">{{ vuexOrderData.orderNr }}</span></p>
-    <div class="imageContainer">
-      <img src="../assets/graphics/drone.svg" alt="Drone" class="droneImage">
+  <transition
+    appear
+    appear-class="custom-appear-class"
+    appear-to-class="custom-appear-to-class" (2.1.8+)
+    appear-active-class="custom-appear-active-class"
+  >
+    <div class="statusContainer">
+      <LoadingOrder v-if="vuexLoadingOrder === true" />
+      <p class="ordernumber">Orderummer <span class="ordernumberNumber">{{ vuexOrderData.orderNr }}</span></p>
+      <div class="imageContainer">
+        <img src="../assets/graphics/drone.svg" alt="Drone" class="droneImage">
+      </div>
+      <h1 class="heading">Din beställning är på väg</h1>
+      <p class="eta"><span class="etaTime">{{ vuexOrderData.eta }}</span> minuter</p>
+      <router-link to="/home" class="button">Ok, cool!</router-link>
     </div>
-    <h1 class="heading">Din beställning är på väg</h1>
-    <p class="eta"><span class="etaTime">{{ vuexOrderData.eta }}</span> minuter</p>
-    <router-link to="/home" class="button">Ok, cool!</router-link>
-  </div>
+  </transition>
 </template>
 
 <script>
+import LoadingOrder from '../components/LoadingOrder'
 export default {
   name: 'Status',
+  components: {
+    LoadingOrder
+  },
+  mounted() {
+    this.$store.commit('showLoader', true);
+    setTimeout(()=>{ this.$store.dispatch('sendOrder'); }, 1000);
+  },
+  watch: {
+    vuexLoadingOrder() {
+
+    }
+  },
   computed: {
     vuexOrderData() {
       return this.$store.state.order;
+    },
+    vuexLoadingOrder() {
+        return this.$store.state.loadingOrder;
     }
   }
 }
@@ -84,6 +108,18 @@ export default {
         font-family: 'PT Serif', serif;
       }
   }
+
+  /* Transition vid rendering av componenten */
+  .custom-appear-class {
+    opacity: 0;  
+  }
+  .custom-appear-to-class {
+    opacity: 1;
+  }
+  .custom-appear-active-class {
+    transition: all 1s ease;
+  }
+
   @keyframes hooverAnimation {
     0% {top: 0}
     100% {top: -1rem}

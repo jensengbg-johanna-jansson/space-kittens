@@ -17,10 +17,6 @@ export default {
     },
     props: {
         menuMenuItemData: Object
-    },
-    data() {
-        return {
-        }
     }
 }
 </script>

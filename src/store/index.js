@@ -5,45 +5,25 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-      // Dummy-menu
-      // Remove all objects inside array when adding the API fetch function
-    menu: [
-      {"id":1,"title":"Bryggkaffe","desc":"Bryggd på månadens bönor.","price":39},
-      {
-        "id":2,
-        "title":"Caffè Doppio",
-        "desc":"Bryggd på månadens bönor.",
-        "price":49
-      },
-      {"id":3,"title":"Cappuccino","desc":"Bryggd på månadens bönor.","price":49},
-      {
-        "id":4,
-        "title":"Latte Macchiato",
-        "desc":"Bryggd på månadens bönor.",
-        "price":49
-      },
-      {
-        "id":5,
-        "title":"Kaffe Latte",
-        "desc":"Bryggd på månadens bönor.",
-        "price":54
-      },
-      {"id":6,"title":"Cortado","desc":"Bryggd på månadens bönor.","price":39}
-    ],
+    menu: [],
     cart: [],
 
     numberOfCartItems: 0,
 
-      // Dummy-object
-      // Change values to '0' and '' when adding the real order fetch function
-    order: {
-      eta: 13,
-      orderNr: 'SW921389B',
-    },
+    order: '',
     showCart: false,
-    isOpen: false
+    isOpen: false,
+    loadingOrder: false
   },
   mutations: {
+    setMenu (state, menuData) {
+      for(let i  = 0; i < menuData.length; i++) {
+        state.menu.push(menuData[i]);
+      }
+    },
+    setOrder (state, orderData) {
+      state.order = orderData;
+    },
     addItemToCart (state, menuItem) {
       state.cart.push(menuItem);
       state.numberOfCartItems++;
@@ -71,6 +51,9 @@ export default new Vuex.Store({
     },
     toggleCart (state, toggle) {
       state.showCart = toggle;
+    },
+    showLoader (state, loading) {
+      state.loadingOrder = loading;
     }
   },
   actions: {
@@ -82,9 +65,8 @@ export default new Vuex.Store({
       })
         .then(response => response.json())
         .then(data => {
-          if (data) {
-            ctx.commit("setMenu", data["menu"]);
-            console.log(data);
+          if(data) {
+            ctx.commit("setMenu", data.menu);
           }
         })
         .catch(error => {
@@ -100,8 +82,9 @@ export default new Vuex.Store({
         .then(response => response.json())
         .then(data => {
           if (data) {
-            ctx.commit("orderStatus", data);
+            ctx.commit("setOrder", data);
             console.log(data);
+            ctx.commit("showLoader", false);
           }
         })
         .catch(error => {
