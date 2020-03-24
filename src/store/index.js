@@ -40,12 +40,16 @@ export default new Vuex.Store({
       eta: 13,
       orderNr: 'SW921389B',
     },
-    showCart: false
+    showCart: false,
+    isOpen: false
   },
   mutations: {
     addItemToCart (state, menuItem) {
       state.cart.push(menuItem);
       state.numberOfCartItems++;
+    },
+    toggleMenu (state, toggle) {
+      state.isOpen = toggle
     },
     removeItemFromCart (state, cartItemId) {
       const cartItemArrayIndex = state.cart.map(function(cartItem) { return cartItem.id; }).indexOf(cartItemId);

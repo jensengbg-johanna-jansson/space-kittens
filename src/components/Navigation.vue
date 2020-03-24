@@ -1,6 +1,5 @@
 <template>
     <div class="navigationContainer">
-        <HeaderHamburger class="menuHamburger" />
         <router-link to="/home" class="menuItem">Meny</router-link>
         <span class="line"></span>
         <router-link to="/about" class="menuItem">Vårt Kaffe</router-link>
@@ -10,12 +9,8 @@
 </template>
 
 <script>
-import HeaderHamburger from '../components/HeaderHamburger'
 export default {
-    name: 'Navigation',
-    components: {
-        HeaderHamburger
-    }
+    name: 'Navigation'
 }
 </script>
 
@@ -28,6 +23,8 @@ export default {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: absolute;
+    z-index: 2;
 }
 
 .menuHamburger {
