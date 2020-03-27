@@ -1,0 +1,50 @@
+{
+  "users": [
+    {
+      "uuid": 12345,
+      "name": "John Doe",
+      "email": "john.doe@domain.com"
+    },
+    {
+      "uuid": 45,
+      "name": "Test",
+      "email": "test@email.com"
+    }
+  ],
+  "orders": [
+    {
+      "uuid": 12345,
+      "orderNr": "234hasd8u3kjl2k34snd9",
+      "timeStamp": "2019-07-16T20:32:21",
+      "items": [
+        "Bryggkaffe",
+        "Cappuccino"
+      ],
+      "totalValue": 129
+    },
+    {
+      "uuid": 12345,
+      "orderNr": "916wkod8u3kjl2k62tga9",
+      "timeStamp": "2019-07-11T14:30:59",
+      "items": [
+        "Cappuccino"
+      ],
+      "totalValue": 49
+    },
+    {
+      "uuid": 45,
+      "orderNr": 9876,
+      "order": [
+        "kaffe",
+        "latte"
+      ]
+    },
+    {
+      "id": 45,
+      "orderNr": 4567,
+      "order": [
+        "kaffe"
+      ]
+    }
+  ]
+}
