@@ -22,7 +22,14 @@ export default {
                 setTimeout(()=>{ this.showMsg = false; }, 2000);
             } else {
                 this.showMsg = false;
-                this.$router.push('status');
+                if(this.vuexUuid != null) {
+                    console.log('You have an uuid');
+                    this.$store.dispatch('sendOrder');
+                    //this.$router.push('status');
+                } else {
+                    console.log('Uuid missing');
+                    this.$store.dispatch('createUuid');
+                }
             }
         }
     },
@@ -32,6 +39,12 @@ export default {
         },
         vuexLoadingOrderData() {
             return this.$store.state.loadingOrder;
+        },
+        vuexUuid() {
+            return this.$store.state.uuid;
+        },
+        vuexOrderData() {
+            return this.$store.state.order;
         }
     }
 }

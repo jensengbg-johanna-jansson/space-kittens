@@ -23,15 +23,6 @@
       "totalValue": 129
     },
     {
-      "uuid": 12345,
-      "orderNr": "916wkod8u3kjl2k62tga9",
-      "timeStamp": "2019-07-11 14:30:59",
-      "items": [
-        "Cappuccino"
-      ],
-      "totalValue": 49
-    },
-    {
       "uuid": 45,
       "orderNr": 9876,
       "order": [
@@ -40,11 +31,44 @@
       ]
     },
     {
-      "id": 45,
-      "orderNr": 4567,
-      "order": [
-        "kaffe"
-      ]
+      "uuid": "c2f2eb18-79d7-4f12-895c-df287dff24ef",
+      "orderNr": "AB1585579758423Z",
+      "timeStamp": "2020-3-30 16:49:20",
+      "items": [
+        {
+          "id": 2,
+          "title": "Caffè Doppio",
+          "price": 49,
+          "quantity": 1
+        },
+        {
+          "id": 4,
+          "title": "Latte Macchiato",
+          "price": 49,
+          "quantity": 1
+        },
+        {
+          "id": 3,
+          "title": "Cappuccino",
+          "price": 49,
+          "quantity": 1
+        }
+      ],
+      "totalValue": 147
+    },
+    {
+      "uuid": "c2f2eb18-79d7-4f12-895c-df287dff24ef",
+      "orderNr": "AB1585579927484Z",
+      "timeStamp": "2020-3-30 16:52:9",
+      "items": [
+        {
+          "id": 1,
+          "title": "Bryggkaffe",
+          "price": 39,
+          "quantity": 3
+        }
+      ],
+      "totalValue": 117
     }
   ]
 }

@@ -10,6 +10,9 @@ export default {
   created() {
     this.$store.dispatch('getMenu');
     this.$store.dispatch('getUser');
+
+    let uuid = JSON.parse(localStorage.getItem('airBeanUuid'));
+    this.$store.commit('setUuid', uuid);
   }
 }
 </script>
