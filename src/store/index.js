@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     menu: [],
     cart: [],
+    user: '',
 
     numberOfCartItems: 0,
 
@@ -20,6 +21,9 @@ export default new Vuex.Store({
       for(let i  = 0; i < menuData.length; i++) {
         state.menu.push(menuData[i]);
       }
+    },
+    setUser (state, userData) {
+      state.user = userData;
     },
     setOrder (state, orderData) {
       state.order = orderData;
@@ -85,6 +89,24 @@ export default new Vuex.Store({
             ctx.commit("setOrder", data);
             console.log(data);
             ctx.commit("showLoader", false);
+          }
+        })
+        .catch(error => {
+          console.error("Error:", error);
+        });
+    },
+    async getUser(ctx) {
+      //const uuid = '';
+      const url = "http://localhost:5000/api/beans/user/12345";
+      fetch(url, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data) {
+            ctx.commit("setUser", data);
+            console.log(data);
           }
         })
         .catch(error => {

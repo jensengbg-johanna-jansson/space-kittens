@@ -1,14 +1,22 @@
 <template>
     <div class="userContainer">
         <img src="../assets/graphics/profile.svg" class="profileImage" alt="profile pic">
-        <p class="name">Test Testsson</p>
-        <p class="email">test.testsson@domain.com</p>
+        <p class="name">{{ vuexUserData.name }}</p>
+        <p class="email">{{ vuexUserData.email }}</p>
     </div>
 </template>
 
 <script>
 export default {
-
+    name: 'ProfileUser',
+    mounted() {
+        console.log(this.vuexUserData);
+    },
+    computed: {
+        vuexUserData() {
+            return this.$store.state.user;
+        }
+    }
 }
 </script>
 

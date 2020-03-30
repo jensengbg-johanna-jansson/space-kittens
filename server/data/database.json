@@ -15,7 +15,7 @@
     {
       "uuid": 12345,
       "orderNr": "234hasd8u3kjl2k34snd9",
-      "timeStamp": "2019-07-16T20:32:21",
+      "timeStamp": "2019-07-16 20:32:21",
       "items": [
         "Bryggkaffe",
         "Cappuccino"
@@ -25,7 +25,7 @@
     {
       "uuid": 12345,
       "orderNr": "916wkod8u3kjl2k62tga9",
-      "timeStamp": "2019-07-11T14:30:59",
+      "timeStamp": "2019-07-11 14:30:59",
       "items": [
         "Cappuccino"
       ],

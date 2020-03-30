@@ -2,10 +2,10 @@
     <div class="ordersContainer">
         <h2 class="heading">Orderhistorik</h2>
         <div class="pastOrdersContainer">
-            <ProfileOrdersItem />
+            <ProfileOrdersItem v-for="(order, index) in lowDBOrdersData" :key="index" :profileOrdersItemData="order" />
             <div class="ordersTotal">
                 <p>Total spenderat</p>
-                <p>1669 kr</p>
+                <p>{{ orderTotal }} kr</p>
             </div>
         </div>
     </div>
@@ -17,6 +17,44 @@ export default {
     name: 'ProfileOrders',
     components: {
         ProfileOrdersItem
+    },
+    data() {
+        return {
+            lowDBOrdersData: ''
+        }
+    },
+    methods: {
+        getOrderHistory() {
+            //const uuid = '';
+            const url = "http://localhost:5000/api/beans/order/12345";
+            fetch(url, {
+                method: "GET",
+                headers: { "Content-Type": "application/json" }
+            })
+            .then(response => response.json())
+            .then(data => {
+            if (data) {
+                this.lowDBOrdersData = data;
+                console.log(data);
+            }
+            })
+            .catch(error => {
+                console.error("Error:", error);
+            });
+        }
+    },
+    created() {
+        this.getOrderHistory();
+    },
+    computed: {
+        orderTotal() {
+            let totalOrderValue = 0;
+            for(let i = 0; i < this.lowDBOrdersData.length; i++) {
+                totalOrderValue += this.lowDBOrdersData[i].totalValue;
+            }
+
+            return totalOrderValue;
+        }
     }
 }
 </script>

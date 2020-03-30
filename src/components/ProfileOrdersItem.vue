@@ -1,15 +1,27 @@
 <template>
     <div class="orderItemContainer">
-        <h3 class="orderNr">#asd798uokj3qh</h3>
-        <p class="date">2020/09/21</p>
+        <h3 class="orderNr">#{{ profileOrdersItemData.orderNr }}</h3>
+        <p class="date">{{ orderTimeStamp }}</p>
         <p class="sumHeading text">total ordersumma</p>
-        <p class="orderTotal text">234 kr</p>
+        <p class="orderTotal text">{{ profileOrdersItemData.totalValue }} kr</p>
     </div>
 </template>
 
 <script>
 export default {
-
+    name: 'ProfileOrdersItem',
+    props: {
+        profileOrdersItemData: Object
+    },
+    mounted() {
+        console.log(this.profileOrdersItemData);
+    },
+    computed: {
+        orderTimeStamp() {
+            const dividedTimeStamp = this.profileOrdersItemData.timeStamp.split(" ");
+            return dividedTimeStamp[0];
+        }
+    }
 }
 </script>
 
