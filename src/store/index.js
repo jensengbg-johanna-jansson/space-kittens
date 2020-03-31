@@ -119,11 +119,11 @@ export default new Vuex.Store({
             })
             .then(response => response.json())
             .then(data => {
-            if (data) {
-                console.log('Order was added to database');
-            } else {
-                console.log('Error: could not add order to database');
-            }
+              if (data) {
+                  console.log('Order was added to database');
+              } else {
+                  console.log('Error: could not add order to database');
+              }
             })
             .catch(error => {
               console.error("Error:", error);             
@@ -156,7 +156,7 @@ export default new Vuex.Store({
     },
     async createUuid(ctx) {
       const url = "http://localhost:5000/api/beans/key";
-      fetch(url, {
+      await fetch(url, {
         method: "GET",
         headers: { "Content-Type": "application/json" }
       })
@@ -164,8 +164,9 @@ export default new Vuex.Store({
         .then(data => {
           if(data) {
             localStorage.setItem('airBeanUuid', JSON.stringify(data));
-            console.log(data);
             ctx.commit("setUuid", data);
+            console.log(data);
+            return true;
           }
         })
         .catch(error => {

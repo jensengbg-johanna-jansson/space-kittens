@@ -12,7 +12,9 @@ export default {
     this.$store.dispatch('getUser');
 
     let uuid = JSON.parse(localStorage.getItem('airBeanUuid'));
-    this.$store.commit('setUuid', uuid);
+    if(uuid) {
+      this.$store.commit('setUuid', uuid);
+    }
   }
 }
 </script>

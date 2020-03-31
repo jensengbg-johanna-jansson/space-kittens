@@ -1,13 +1,17 @@
 <template>
     <div class="profileContainer">
         <Header />
-        <ProfileUser />
-        <ProfileOrders />
+        <NewProfile v-if="newUser" />
+        <div v-else class="profile">
+            <ProfileUser />
+            <ProfileOrders />
+        </div>
     </div>
 </template>
 
 <script>
 import Header from '../components/Header'
+import NewProfile from '../components/NewProfile'
 import ProfileUser from '../components/ProfileUser'
 import ProfileOrders from '../components/ProfileOrders'
 
@@ -15,8 +19,14 @@ export default {
     name: 'Profile',
     components: {
         Header,
+        NewProfile,
         ProfileUser,
         ProfileOrders
+    },
+    data() {
+        return {
+            newUser: true
+        }
     }
 }
 </script>

@@ -24,8 +24,6 @@ export default {
                 this.showMsg = false;
                 this.$store.commit('showLoader', true);
                     
-                //setTimeout(()=>{ this.$store.dispatch('sendOrder'); }, 1000);
-
                 if(this.vuexUuid != null) {
                     console.log('You have an uuid');
 
@@ -35,26 +33,6 @@ export default {
                     }).catch(err => {
                         console.log(err)
                     })
-
-                    /*
-                    const promise = new Promise((resolve, reject) => {
-                        if (this.$store.dispatch('sendOrder')) {
-                            resolve();
-                        } else {
-                            reject(Error('it broke'));
-                        }
-                    });
-
-                    promise.then(result => {
-                        this.$router.push('status');
-                        console.log(result);
-                    }, err => {
-                        console.log(err);
-                    });
-                    */
-                    
-                    //this.$store.dispatch('sendOrder');
-                    //this.$router.push('status');
                 } else {
                     console.log('Uuid missing');
                     this.$store.dispatch('createUuid');
@@ -93,6 +71,7 @@ export default {
         text-align: center;
         text-decoration: none;
         border-radius: 5rem;
+        border: none;
         padding: 0.8rem 2.5rem;
         font-weight: bold;
         font-family: 'PT Serif', serif;

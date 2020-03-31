@@ -6,9 +6,9 @@
       "email": "john.doe@domain.com"
     },
     {
-      "uuid": 45,
-      "name": "Test",
-      "email": "test@email.com"
+      "uuid": "8023a23f-cc9d-4171-81bb-60cbb5355be8",
+      "name": "Test Testsson",
+      "email": "test@testdomain.com"
     }
   ],
   "orders": [
