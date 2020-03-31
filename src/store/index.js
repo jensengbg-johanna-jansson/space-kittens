@@ -44,7 +44,8 @@ export default new Vuex.Store({
         orderNr: orderData.orderNr,
         timeStamp: timeStamp,
         items: state.cart,
-        totalValue: cartValue
+        totalValue: cartValue,
+        eta: orderData.eta
       }
 
       console.log(state.order);
@@ -100,7 +101,7 @@ export default new Vuex.Store({
     },
     async sendOrder(ctx) {
       const url = "http://localhost:5000/api/beans";
-      fetch(url, {
+      return fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" }
       })
@@ -125,7 +126,7 @@ export default new Vuex.Store({
             }
             })
             .catch(error => {
-            console.error("Error:", error);
+              console.error("Error:", error);             
             });
 
             console.log(data);

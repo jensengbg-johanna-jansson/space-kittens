@@ -22,15 +22,47 @@ export default {
                 setTimeout(()=>{ this.showMsg = false; }, 2000);
             } else {
                 this.showMsg = false;
+                this.$store.commit('showLoader', true);
+                    
+                //setTimeout(()=>{ this.$store.dispatch('sendOrder'); }, 1000);
+
                 if(this.vuexUuid != null) {
                     console.log('You have an uuid');
-                    this.$store.dispatch('sendOrder');
+
+                    
+                    this.$store.dispatch('sendOrder').then(() => {
+                        this.$router.push('status');
+                    }).catch(err => {
+                        console.log(err)
+                    })
+
+                    /*
+                    const promise = new Promise((resolve, reject) => {
+                        if (this.$store.dispatch('sendOrder')) {
+                            resolve();
+                        } else {
+                            reject(Error('it broke'));
+                        }
+                    });
+
+                    promise.then(result => {
+                        this.$router.push('status');
+                        console.log(result);
+                    }, err => {
+                        console.log(err);
+                    });
+                    */
+                    
+                    //this.$store.dispatch('sendOrder');
                     //this.$router.push('status');
                 } else {
                     console.log('Uuid missing');
                     this.$store.dispatch('createUuid');
                 }
             }
+        },
+        resolve() {
+            console.log('Success');
         }
     },
     computed: {
