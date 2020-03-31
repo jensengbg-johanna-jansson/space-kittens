@@ -1,6 +1,8 @@
 <template>
   <div class="aboutContainer">
-    <Navigation v-if="vuexShowMenu" />
+    <transition name="fade">
+      <Navigation v-if="vuexShowMenu" @closeNav="nav" class="navOverlay"/>
+    </transition>
     <Header />
     <div class="aboutText">
       <h1 class="aboutHeader">Vårt kaffe</h1>
@@ -25,9 +27,23 @@ export default {
     Header,
     Navigation
   },
+  data: () => {
+    return {
+      openNav: false
+    };
+  },
   computed: {
     vuexShowMenu() {
       return this.$store.state.isOpen;
+    }
+  },
+  methods: {
+    nav() {
+      if (this.openNav === true) {
+        this.openNav = false;
+      } else {
+        this.openNav = true;
+      }
     }
   }
 }
@@ -86,5 +102,10 @@ export default {
 
 .eva {
   border-radius: 50%;
+}
+
+.navOverlay {
+  position: absolute;
+  z-index: 100;
 }
 </style>

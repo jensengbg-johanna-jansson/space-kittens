@@ -1,6 +1,8 @@
 <template>
   <div class="homeContainer">
-    <Navigation v-if="vuexShowMenu" />
+    <transition name="fade">
+      <Navigation v-if="vuexShowMenu" @closeNav="nav" class="navOverlay"/>
+    </transition>
     <Header />
     <Cart v-if="vuexShowCart" />
     <h1 class="mainHeader">Meny</h1>
@@ -24,6 +26,11 @@ export default {
     Footer,
     Navigation
   },
+  data: () => {
+    return {
+      openNav: false
+    };
+  },
   methods: {
     preventScroll() {
       if(this.vuexShowCart){
@@ -33,6 +40,13 @@ export default {
         document.getElementById('app').style.overflow = 'initial';
         document.getElementById('app').style.height = 'initial';
       } 
+    },
+    nav() {
+      if (this.openNav === true) {
+        this.openNav = false;
+      } else {
+        this.openNav = true;
+      }
     }
   },
   mounted() {
@@ -57,13 +71,18 @@ export default {
 <style lang="scss" scoped>
 .homeContainer {
   background: $pink;
-
-  .mainHeader {
-    font-family: 'PT Serif', serif;
-    color: $brown;
-    text-align: center;
-    font-size: 2.625rem;
-    margin-bottom: 1.5rem;
-  }
 }
+.mainHeader {
+  font-family: 'PT Serif', serif;
+  color: $brown;
+  text-align: center;
+  font-size: 2.625rem;
+  margin-bottom: 1.5rem;
+}
+
+.navOverlay {
+  position: absolute;
+  z-index: 100;
+}
+
 </style>
