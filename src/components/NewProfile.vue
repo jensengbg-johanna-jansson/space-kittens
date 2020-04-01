@@ -52,30 +52,15 @@ export default {
 
             return message;
         },
-        async sendUserData() {
-            let payloadBody = {
+        sendUserData() {
+            let payload = {
                 uuid: this.$store.state.uuid,
                 name: this.name,
                 email: this.email
             }
-            console.log(payloadBody);
-            const orderUrl = "http://localhost:5000/api/beans/user";
-            fetch(orderUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payloadBody)
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data) {
-                    console.log('User was added to database');
-                } else {
-                    console.log('Error: could not add user to database');
-                }
-            })
-            .catch(error => {
-              console.error("Error:", error);             
-            });
+            this.$store.commit('setUser', payload);
+            
+            this.$store.dispatch('addUser');
         },
         addUser() {
             let message = this.validateInput();
@@ -83,7 +68,7 @@ export default {
             if(message.nameSuccess === true && message.emailSuccess === true && message.gdprSuccess === true) {
                 
                 this.$store.dispatch('createUuid').then(()=>( 
-                    this.sendUserData() 
+                    this.sendUserData()
                 ))
                 console.log('Success');
             } else {

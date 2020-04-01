@@ -161,7 +161,7 @@ export default new Vuex.Store({
           }
         })
         .catch(error => {
-          console.error("Error:", error);
+          console.error("Error 3:", error);
         });
     },
     async getOrderHistory(ctx) {
@@ -179,7 +179,7 @@ export default new Vuex.Store({
       }
       })
       .catch(error => {
-          console.error("Error:", error);
+          console.error("Error 2:", error);
       });
     },
     async createUuid(ctx) {
@@ -198,9 +198,29 @@ export default new Vuex.Store({
           }
         })
         .catch(error => {
-          console.error("Error:", error);
+          console.error("Error 4:", error);
         });
-    }
+    },
+    async addUser(ctx) {
+      const url = "http://localhost:5000/api/beans/user";
+      let userData = ctx.state.user;
+      fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userData)
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data) {
+              console.log('User was added to database');
+          } else {
+              console.log('Error: could not add user to database');
+          }
+      })
+      .catch(error => {
+        console.error("Error 1:", error);             
+      });
+    },
   },
   modules: {
   }

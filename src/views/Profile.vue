@@ -1,5 +1,6 @@
 <template>
     <div class="profileContainer">
+        <Navigation v-if="vuexShowMenu" />
         <Header />
         <NewProfile v-if="vuexUuid === null" />
         <div v-else class="profile">
@@ -10,6 +11,7 @@
 </template>
 
 <script>
+import Navigation from '../components/Navigation'
 import Header from '../components/Header'
 import NewProfile from '../components/NewProfile'
 import ProfileUser from '../components/ProfileUser'
@@ -18,6 +20,7 @@ import ProfileOrders from '../components/ProfileOrders'
 export default {
     name: 'Profile',
     components: {
+        Navigation,
         Header,
         NewProfile,
         ProfileUser,
@@ -26,6 +29,9 @@ export default {
     computed: {
         vuexUuid() {
             return this.$store.state.uuid;
+        },
+        vuexShowMenu() {
+            return this.$store.state.isOpen;
         }
     }
 }
