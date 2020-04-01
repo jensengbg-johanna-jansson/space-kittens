@@ -81,10 +81,4 @@ export default {
   font-size: 2.625rem;
   margin-bottom: 1.5rem;
 }
-
-.navOverlay {
-  position: absolute;
-  z-index: 100;
-}
-
 </style>

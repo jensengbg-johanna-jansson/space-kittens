@@ -37,7 +37,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 3;
 }
 
 .hamburgerIcon {
