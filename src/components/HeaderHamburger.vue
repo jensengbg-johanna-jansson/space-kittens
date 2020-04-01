@@ -21,6 +21,9 @@ export default {
         isOpen() {
             this.$store.commit('toggleMenu', this.isOpen)
         }
+    },
+    destroyed() {
+        this.$store.commit('toggleMenu', false)
     }
 }
 </script>

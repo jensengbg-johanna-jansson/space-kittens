@@ -1,16 +1,51 @@
 <template>
     <div class="navigationContainer">
-        <router-link to="/home" class="menuItem">Meny</router-link>
+        <p @click="menu" class="menuItem">Meny</p>
         <span class="line"></span>
-        <router-link to="/about" class="menuItem">Vårt Kaffe</router-link>
+        <p @click="about" class="menuItem">Vårt Kaffe</p>
         <span class="line"></span>
-        <router-link to="/status" class="menuItem">Orderstatus</router-link>
+        <p @click="orderStatus" class="menuItem">Orderstatus</p>
+        <span class="line"></span>
+        <p @click="myProfile" class="menuItem">Min profil</p>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'Navigation'
+    name: 'Navigation',
+    methods: {
+        closeNav() {
+            this.$emit('toggleMenu')
+        },
+        menu() {
+            if (this.$route.path !== "/home") {
+                this.$router.push("/home")
+            } else {
+                this.closeNav()
+            }
+        },
+        about() {
+            if (this.$route.path !== "/about") {
+                this.$router.push("/about")
+            } else {
+                this.closeNav()
+            }
+        },
+        orderStatus() {
+            if (this.$route.path !== "/status") {
+                this.$route.push("/status")
+            } else {
+                this.closeNav()
+            }
+        },
+        myProfile() {
+            if (this.$route.path !== "/profile") {
+                this.$route.push("/profile")
+            } else {
+                this.closeNav()
+            }
+        }
+    }
 }
 </script>
 
@@ -49,4 +84,5 @@ export default {
     width: 3rem;
     background: grey;
 }
+
 </style>
