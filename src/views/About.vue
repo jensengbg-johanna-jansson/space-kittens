@@ -1,7 +1,7 @@
 <template>
   <div class="aboutContainer">
     <transition name="fade">
-      <Navigation v-if="vuexShowMenu" @closeNav="nav" class="navOverlay"/>
+      <Navigation v-if="vuexShowMenu" class="navOverlay"/>
     </transition>
     <Header />
     <div class="aboutText">
