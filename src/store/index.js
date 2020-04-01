@@ -16,7 +16,8 @@ export default new Vuex.Store({
     order: '',
     showCart: false,
     isOpen: false,
-    loadingOrder: false
+    loadingOrder: false,
+    hasOrder: false
   },
   mutations: {
     setMenu (state, menuData) {
@@ -32,6 +33,9 @@ export default new Vuex.Store({
     },
     setOrderHistory (state, historyData) {
       state.orderHistory = historyData;
+    },
+    setHasOrder (state, value) {
+      state.hasOrder = value;
     },
     setOrder (state, orderData) {
       let cartValue = 0;
@@ -148,21 +152,25 @@ export default new Vuex.Store({
     async getUser(ctx) {
       const uuid = ctx.state.uuid;
       const url = "http://localhost:5000/api/beans/user/" + uuid;
-
-      fetch(url, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-      })
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          if(data) {
-            ctx.commit("setUser", data);
-          }
+      if(uuid != null) {
+        fetch(url, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" }
         })
-        .catch(error => {
-          console.error("Error 3:", error);
-        });
+          .then(response => response.json())
+          .then(data => {
+            console.log('Min data: ')
+            console.log(data);
+            if(data) {
+              ctx.commit("setUser", data);
+            }
+          })
+          .catch(error => {
+            console.error("Error 3:", error);
+          });
+      } else {
+        console.log('No UuID');
+      }
     },
     async getOrderHistory(ctx) {
       const uuid = ctx.state.uuid;
@@ -193,7 +201,6 @@ export default new Vuex.Store({
           if(data) {
             localStorage.setItem('airBeanUuid', JSON.stringify(data));
             ctx.commit("setUuid", data);
-            console.log(data);
             return true;
           }
         })

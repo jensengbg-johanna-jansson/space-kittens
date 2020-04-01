@@ -1,52 +1,6 @@
 {
   "users": [
-    {
-      "uuid": "8023a23f-cc9d-4171-81bb-60cbb5355be8",
-      "name": "Test Testsson",
-      "email": "test@testdomain.com"
-    },
-    {
-      "uuid": "1c01b6a8-6040-4f3d-ae58-817ee7a1f1f1",
-      "name": "Johanna",
-      "email": "test@domain.com"
-    },
-    {
-      "uuid": "0044b609-5939-4ab9-bee5-3e84d799ef1d",
-      "name": "Yona Yanson",
-      "email": "test@domain.com"
-    },
-    {
-      "uuid": "8477210d-54bf-4b15-92b2-d3795883bfc4",
-      "name": "Josefin",
-      "email": "test@domain.com"
-    },
-    {
-      "uuid": "4c20e5d5-e024-41aa-8f8f-b31d07c87810",
-      "name": "hej",
-      "email": "hej"
-    }
   ],
   "orders": [
-    {
-      "uuid": "0044b609-5939-4ab9-bee5-3e84d799ef1d",
-      "orderNr": "AB1585744037576Y",
-      "timeStamp": "2020-04-01 14:27:19",
-      "items": [
-        {
-          "id": 2,
-          "title": "Caffè Doppio",
-          "price": 49,
-          "quantity": 1
-        },
-        {
-          "id": 3,
-          "title": "Cappuccino",
-          "price": 49,
-          "quantity": 1
-        }
-      ],
-      "totalValue": 98,
-      "eta": 20
-    }
   ]
 }

@@ -6,7 +6,7 @@
     appear-active-class="custom-appear-active-class"
   >
     <div class="statusContainer">
-      <p class="ordernumber">Orderummer <span class="ordernumberNumber">{{ vuexOrderData.orderNr }}</span></p>
+      <p class="ordernumber">Orderummer <span class="ordernumberNumber">#{{ vuexOrderData.orderNr }}</span></p>
       <div class="imageContainer">
         <img src="../assets/graphics/drone.svg" alt="Drone" class="droneImage">
       </div>

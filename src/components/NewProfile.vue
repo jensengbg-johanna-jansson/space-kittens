@@ -32,7 +32,8 @@ export default {
         return {
             name: '',
             email: '',
-            gdpr: false
+            gdpr: false,
+            hasOrder: false
         }
     },
     methods: {
@@ -62,6 +63,15 @@ export default {
             
             this.$store.dispatch('addUser');
         },
+        sendOrder() {
+            this.$store.commit('showLoader', true);
+            
+            this.$store.dispatch('sendOrder').then(() => {
+                this.$router.push('status');
+            }).catch(err => {
+                console.log(err)
+            })
+        },
         addUser() {
             let message = this.validateInput();
             console.log(message);
@@ -74,6 +84,15 @@ export default {
             } else {
                 console.log('Error');
             }
+
+            if(this.vuexHasOrderValue === true) {
+                this.sendOrder();
+            }
+        }
+    },
+    computed: {
+        vuexHasOrderValue() {
+            return this.$store.state.hasOrder;
         }
     }
 }
