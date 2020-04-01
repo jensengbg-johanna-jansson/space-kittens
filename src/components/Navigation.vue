@@ -16,7 +16,7 @@ export default {
     methods: {
         menu() {
             if (this.$route.path !== "/home") {
-                this.$router.push("/home")
+                this.$router.push("/home") 
             }
         },
         about() {
@@ -66,6 +66,7 @@ export default {
     font-weight: bold;
     line-height: 120%;
     margin: 1.5rem;
+    cursor: pointer;
 }
 
 .line {

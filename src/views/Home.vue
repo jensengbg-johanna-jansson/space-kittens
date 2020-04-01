@@ -69,8 +69,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/transitions.scss";
 .homeContainer {
   background: $pink;
+  overflow: hidden;
 }
 .mainHeader {
   font-family: 'PT Serif', serif;

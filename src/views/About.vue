@@ -50,9 +50,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/transitions.scss";
 .aboutContainer {
   background: $pink;
-  height: auto;
+  height: 120vh;
   width: 100%;
 }
 
