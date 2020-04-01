@@ -1,17 +1,12 @@
 <template>
     <div class="navigationContainer">
-        <div class="header">
-            <button @click="closeNav" class="nav-btn">
-                <img src="../assets/graphics/close.svg" alt />
-            </button>
-        </div>
         <p @click="menu" class="menuItem">Meny</p>
         <span class="line"></span>
         <p @click="about" class="menuItem">Vårt Kaffe</p>
         <span class="line"></span>
-        <!-- <p @click="orderStatus" class="menuItem">Orderstatus</p> -->
+        <p @click="orderStatus" class="menuItem">Orderstatus</p>
         <span class="line"></span>
-        <!-- <p @click="myProfile" class="menuItem">Min profil</p> -->
+        <p @click="myProfile" class="menuItem">Min profil</p>
     </div>
 </template>
 
@@ -20,20 +15,34 @@ export default {
     name: 'Navigation',
     methods: {
         closeNav() {
-            this.$emit('closeNav');
+            this.$emit('toggleMenu')
         },
         menu() {
             if (this.$route.path !== "/home") {
-                this.$router.push("/home");
+                this.$router.push("/home")
             } else {
-                this.closeNav();
+                this.closeNav()
             }
         },
         about() {
             if (this.$route.path !== "/about") {
-                this.$router.push("/about");
+                this.$router.push("/about")
             } else {
-                this.closeNav();
+                this.closeNav()
+            }
+        },
+        orderStatus() {
+            if (this.$route.path !== "/status") {
+                this.$route.push("/status")
+            } else {
+                this.closeNav()
+            }
+        },
+        myProfile() {
+            if (this.$route.path !== "/profile") {
+                this.$route.push("/profile")
+            } else {
+                this.closeNav()
             }
         }
     }
@@ -76,16 +85,4 @@ export default {
     background: grey;
 }
 
-.header {
-    display: flex;
-    align-self: flex-start;
-}
-
-.nav-btn {
-    height: 4.8rem;
-    width: 4.8rem;
-    border-radius: 100%;
-    border: none;
-    cursor: pointer;
-}
 </style>

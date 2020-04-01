@@ -1,7 +1,7 @@
 <template>
   <div class="homeContainer">
     <transition name="fade">
-      <Navigation v-if="vuexShowMenu" @closeNav="nav" class="navOverlay"/>
+      <Navigation v-if="vuexShowMenu" @toggleMenu="nav" class="navOverlay"/>
     </transition>
     <Header />
     <Cart v-if="vuexShowCart" />
@@ -26,11 +26,11 @@ export default {
     Footer,
     Navigation
   },
-  data: () => {
-    return {
-      openNav: false
-    };
-  },
+  // data: () => {
+  //   return {
+  //     vuexShowMenu: false
+  //   };
+  // },
   methods: {
     preventScroll() {
       if(this.vuexShowCart){
@@ -42,10 +42,10 @@ export default {
       } 
     },
     nav() {
-      if (this.openNav === true) {
-        this.openNav = false;
+      if (this.vuexShowMenu === true) {
+        this.vuexShowMenu = false;
       } else {
-        this.openNav = true;
+        this.vuexShowMenu = true;
       }
     }
   },

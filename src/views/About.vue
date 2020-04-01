@@ -27,11 +27,11 @@ export default {
     Header,
     Navigation
   },
-  data: () => {
-    return {
-      openNav: false
-    };
-  },
+  // data: () => {
+  //   return {
+  //     vuexShowMenu: false
+  //   };
+  // },
   computed: {
     vuexShowMenu() {
       return this.$store.state.isOpen;
@@ -39,10 +39,10 @@ export default {
   },
   methods: {
     nav() {
-      if (this.openNav === true) {
-        this.openNav = false;
+      if (this.vuexShowMenu === true) {
+        this.vuexShowMenu = false;
       } else {
-        this.openNav = true;
+        this.vuexShowMenu = true;
       }
     }
   }
