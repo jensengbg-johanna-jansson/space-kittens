@@ -40,8 +40,12 @@ export default new Vuex.Store({
         cartValue += itemTotal;
       }
 
-      let current_datetime = new Date()
-      let timeStamp = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + " " + current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds() 
+      let current_datetime = new Date();
+      let day = String(current_datetime.getDate()).padStart(2, '0');
+      let month = String(current_datetime.getMonth() + 1).padStart(2, '0'); //January is 0!
+      let year = current_datetime.getFullYear();
+      let time = current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds();
+      let timeStamp = year + "-" + month + "-" + day + " " + time; 
 
       state.order = {
         uuid: state.uuid,
