@@ -31,7 +31,7 @@ export default {
         },
         myProfile() {
             if (this.$route.path !== "/profile") {
-                this.$route.push("/profile")
+                this.$router.push("/profile")
             }
         }
     }

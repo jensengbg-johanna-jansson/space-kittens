@@ -104,9 +104,4 @@ export default {
 .eva {
   border-radius: 50%;
 }
-
-.navOverlay {
-  position: absolute;
-  z-index: 100;
-}
 </style>

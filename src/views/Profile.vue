@@ -1,6 +1,8 @@
 <template>
     <div class="profileContainer">
-        <Navigation v-if="vuexShowMenu" />
+        <transition name="fade">
+            <Navigation v-if="vuexShowMenu" class="navOverlay"/>
+        </transition>
         <Header />
         <NewProfile v-if="vuexUuid === null" />
         <div v-else class="profile">
@@ -38,6 +40,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    @import "../scss/transitions.scss";
     .profileContainer {
         background: $brown;
         min-height: 100vh;
