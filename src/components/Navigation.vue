@@ -33,7 +33,7 @@ export default {
         },
         orderStatus() {
             if (this.$route.path !== "/status") {
-                this.$route.push("/status")
+                this.$router.push("/status")
             } else {
                 this.closeNav()
             }
