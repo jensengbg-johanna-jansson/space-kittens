@@ -26,6 +26,21 @@
         "Cappuccino"
       ],
       "totalValue": 129
+    },
+    {
+      "uuid": "1d79269a-5058-4f00-a874-ff364a8d06e9",
+      "orderNr": "AB1585738590422X",
+      "timeStamp": "2020-4-1 12:56:32",
+      "items": [
+        {
+          "id": 1,
+          "title": "Bryggkaffe",
+          "price": 39,
+          "quantity": 1
+        }
+      ],
+      "totalValue": 39,
+      "eta": 21
     }
   ]
 }

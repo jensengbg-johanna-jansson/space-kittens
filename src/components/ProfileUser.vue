@@ -10,7 +10,7 @@
 export default {
     name: 'ProfileUser',
     mounted() {
-        console.log(this.vuexUserData);
+        this.$store.dispatch('getUser');
     },
     computed: {
         vuexUserData() {

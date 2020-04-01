@@ -9,6 +9,7 @@ export default new Vuex.Store({
     cart: [],
     uuid: null,
     user: '',
+    orderHistory: '',
 
     numberOfCartItems: 0,
 
@@ -28,6 +29,9 @@ export default new Vuex.Store({
     },
     setUser (state, userData) {
       state.user = userData;
+    },
+    setOrderHistory (state, historyData) {
+      state.orderHistory = historyData;
     },
     setOrder (state, orderData) {
       let cartValue = 0;
@@ -138,21 +142,41 @@ export default new Vuex.Store({
         });
     },
     async getUser(ctx) {
-      //const uuid = '';
-      const url = "http://localhost:5000/api/beans/user/12345";
+      const uuid = ctx.state.uuid;
+      const url = "http://localhost:5000/api/beans/user/" + uuid;
+
       fetch(url, {
         method: "GET",
         headers: { "Content-Type": "application/json" }
       })
         .then(response => response.json())
         .then(data => {
-          if (data) {
+          console.log(data);
+          if(data) {
             ctx.commit("setUser", data);
           }
         })
         .catch(error => {
           console.error("Error:", error);
         });
+    },
+    async getOrderHistory(ctx) {
+      const uuid = ctx.state.uuid;
+      const url = "http://localhost:5000/api/beans/order/" + uuid;
+
+      fetch(url, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" }
+      })
+      .then(response => response.json())
+      .then(data => {
+      if (data) {
+        ctx.commit("setOrderHistory", data);
+      }
+      })
+      .catch(error => {
+          console.error("Error:", error);
+      });
     },
     async createUuid(ctx) {
       const url = "http://localhost:5000/api/beans/key";

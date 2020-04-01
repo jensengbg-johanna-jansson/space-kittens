@@ -39,7 +39,7 @@ router.get('/key', (req, res) => {
 
 router.get('/user/:uuid', async (req, res) => {
     const user = await database.get('users')
-    .find( ({ uuid }) => uuid === parseInt(req.params.uuid) )  
+    .find( ({ uuid }) => uuid === req.params.uuid )  
     .value();
     
     res.send(user);
@@ -55,7 +55,7 @@ router.post('/user', jsonParser, async (req, res) => {
 
 router.get('/order/:uuid', async (req, res) => {
     const orders = await database.get('orders')
-                                .filter({uuid: parseInt(req.params.uuid)})
+                                .filter({uuid: req.params.uuid})
                                 .value();
     
     res.send(orders);
