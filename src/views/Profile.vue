@@ -1,7 +1,7 @@
 <template>
     <div class="profileContainer">
         <Header />
-        <NewProfile v-if="newUser" />
+        <NewProfile v-if="vuexUuid === null" />
         <div v-else class="profile">
             <ProfileUser />
             <ProfileOrders />
@@ -23,9 +23,9 @@ export default {
         ProfileUser,
         ProfileOrders
     },
-    data() {
-        return {
-            newUser: true
+    computed: {
+        vuexUuid() {
+            return this.$store.state.uuid;
         }
     }
 }

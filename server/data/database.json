@@ -9,6 +9,11 @@
       "uuid": "8023a23f-cc9d-4171-81bb-60cbb5355be8",
       "name": "Test Testsson",
       "email": "test@testdomain.com"
+    },
+    {
+      "uuid": "1d79269a-5058-4f00-a874-ff364a8d06e9",
+      "name": "hej",
+      "email": "hej"
     }
   ],
   "orders": [
