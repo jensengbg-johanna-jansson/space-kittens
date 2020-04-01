@@ -1,7 +1,7 @@
 <template>
   <div class="homeContainer">
     <transition name="fade">
-      <Navigation v-if="vuexShowMenu" @toggleMenu="nav" class="navOverlay"/>
+      <Navigation v-if="vuexShowMenu" class="navOverlay"/>
     </transition>
     <Header />
     <Cart v-if="vuexShowCart" />
@@ -69,8 +69,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../scss/transitions.scss";
 .homeContainer {
   background: $pink;
+  overflow: hidden;
 }
 .mainHeader {
   font-family: 'PT Serif', serif;

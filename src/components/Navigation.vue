@@ -14,35 +14,24 @@
 export default {
     name: 'Navigation',
     methods: {
-        closeNav() {
-            this.$emit('toggleMenu')
-        },
         menu() {
             if (this.$route.path !== "/home") {
-                this.$router.push("/home")
-            } else {
-                this.closeNav()
+                this.$router.push("/home") 
             }
         },
         about() {
             if (this.$route.path !== "/about") {
                 this.$router.push("/about")
-            } else {
-                this.closeNav()
             }
         },
         orderStatus() {
             if (this.$route.path !== "/status") {
-                this.$route.push("/status")
-            } else {
-                this.closeNav()
+                this.$router.push("/status")
             }
         },
         myProfile() {
             if (this.$route.path !== "/profile") {
                 this.$route.push("/profile")
-            } else {
-                this.closeNav()
             }
         }
     }
@@ -77,6 +66,7 @@ export default {
     font-weight: bold;
     line-height: 120%;
     margin: 1.5rem;
+    cursor: pointer;
 }
 
 .line {

@@ -1,4 +1,5 @@
 <template>
+<transition name="fade">
   <div
   class="introContainer"
   @click="goNext">
@@ -6,6 +7,7 @@
       <img src="../assets/graphics/airbean-landing.svg" alt="airbeanlogo" class="logo">
       <img src="../assets/graphics/intro-graphic-right.svg" alt="airbeanright" class="logo-right">
   </div>
+</transition>
 </template>
 
 <script>
@@ -21,7 +23,7 @@ export default {
 
 <style lang="scss" scoped>
 @import url('https://fonts.googleapis.com/css?family=Rufina&display=swap');
-
+@import "../scss/transitions.scss";
 .introContainer {
     height: 100vh;
     width: 100%;
