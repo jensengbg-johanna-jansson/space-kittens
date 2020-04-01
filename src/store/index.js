@@ -7,13 +7,17 @@ export default new Vuex.Store({
   state: {
     menu: [],
     cart: [],
+    uuid: null,
+    user: '',
+    orderHistory: '',
 
     numberOfCartItems: 0,
 
     order: '',
     showCart: false,
     isOpen: false,
-    loadingOrder: false
+    loadingOrder: false,
+    hasOrder: false
   },
   mutations: {
     setMenu (state, menuData) {
@@ -21,8 +25,42 @@ export default new Vuex.Store({
         state.menu.push(menuData[i]);
       }
     },
+    setUuid (state, localStorageUuid) {     
+      state.uuid = localStorageUuid.key;
+    },
+    setUser (state, userData) {
+      state.user = userData;
+    },
+    setOrderHistory (state, historyData) {
+      state.orderHistory = historyData;
+    },
+    setHasOrder (state, value) {
+      state.hasOrder = value;
+    },
     setOrder (state, orderData) {
-      state.order = orderData;
+      let cartValue = 0;
+      for(let i = 0; i < state.cart.length; i++) {
+        let itemTotal = state.cart[i].price * state.cart[i].quantity;
+        cartValue += itemTotal;
+      }
+
+      let current_datetime = new Date();
+      let day = String(current_datetime.getDate()).padStart(2, '0');
+      let month = String(current_datetime.getMonth() + 1).padStart(2, '0'); //January is 0!
+      let year = current_datetime.getFullYear();
+      let time = current_datetime.getHours() + ":" + current_datetime.getMinutes() + ":" + current_datetime.getSeconds();
+      let timeStamp = year + "-" + month + "-" + day + " " + time; 
+
+      state.order = {
+        uuid: state.uuid,
+        orderNr: orderData.orderNr,
+        timeStamp: timeStamp,
+        items: state.cart,
+        totalValue: cartValue,
+        eta: orderData.eta
+      }
+
+      console.log(state.order);
     },
     addItemToCart (state, menuItem) {
       state.cart.push(menuItem);
@@ -75,7 +113,7 @@ export default new Vuex.Store({
     },
     async sendOrder(ctx) {
       const url = "http://localhost:5000/api/beans";
-      fetch(url, {
+      return fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" }
       })
@@ -83,6 +121,26 @@ export default new Vuex.Store({
         .then(data => {
           if (data) {
             ctx.commit("setOrder", data);
+
+            console.log(this.state.order);
+            const orderUrl = "http://localhost:5000/api/beans/order";
+            fetch(orderUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(this.state.order)
+            })
+            .then(response => response.json())
+            .then(data => {
+              if (data) {
+                  console.log('Order was added to database');
+              } else {
+                  console.log('Error: could not add order to database');
+              }
+            })
+            .catch(error => {
+              console.error("Error:", error);             
+            });
+
             console.log(data);
             ctx.commit("showLoader", false);
           }
@@ -90,7 +148,86 @@ export default new Vuex.Store({
         .catch(error => {
           console.error("Error:", error);
         });
-    }
+    },
+    async getUser(ctx) {
+      const uuid = ctx.state.uuid;
+      const url = "http://localhost:5000/api/beans/user/" + uuid;
+      if(uuid != null) {
+        fetch(url, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" }
+        })
+          .then(response => response.json())
+          .then(data => {
+            console.log('Min data: ')
+            console.log(data);
+            if(data) {
+              ctx.commit("setUser", data);
+            }
+          })
+          .catch(error => {
+            console.error("Error 3:", error);
+          });
+      } else {
+        console.log('No UuID');
+      }
+    },
+    async getOrderHistory(ctx) {
+      const uuid = ctx.state.uuid;
+      const url = "http://localhost:5000/api/beans/order/" + uuid;
+
+      fetch(url, {
+          method: "GET",
+          headers: { "Content-Type": "application/json" }
+      })
+      .then(response => response.json())
+      .then(data => {
+      if (data) {
+        ctx.commit("setOrderHistory", data);
+      }
+      })
+      .catch(error => {
+          console.error("Error 2:", error);
+      });
+    },
+    async createUuid(ctx) {
+      const url = "http://localhost:5000/api/beans/key";
+      await fetch(url, {
+        method: "GET",
+        headers: { "Content-Type": "application/json" }
+      })
+        .then(response => response.json())
+        .then(data => {
+          if(data) {
+            localStorage.setItem('airBeanUuid', JSON.stringify(data));
+            ctx.commit("setUuid", data);
+            return true;
+          }
+        })
+        .catch(error => {
+          console.error("Error 4:", error);
+        });
+    },
+    async addUser(ctx) {
+      const url = "http://localhost:5000/api/beans/user";
+      let userData = ctx.state.user;
+      fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(userData)
+      })
+      .then(response => response.json())
+      .then(data => {
+          if (data) {
+              console.log('User was added to database');
+          } else {
+              console.log('Error: could not add user to database');
+          }
+      })
+      .catch(error => {
+        console.error("Error 1:", error);             
+      });
+    },
   },
   modules: {
   }

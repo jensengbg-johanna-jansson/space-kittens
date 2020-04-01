@@ -1,6 +1,8 @@
 <template>
     <div class="cartContainer">
-        <div class="cartItemsContainer">
+        <LoadingOrder v-if="vuexLoadingOrder === true" />
+        <NewProfile v-if="vuexHasOrderData" />
+        <div v-else class="cartItemsContainer">
             <h1 class="mainHeading">Din beställning</h1>
             <div class="noItems" v-if="vuexNumberOfCartItemsData === 0">
                 <p>Oh no there's no coffee!</p>
@@ -14,19 +16,32 @@
 </template>
 
 <script>
+import LoadingOrder from '../components/LoadingOrder'
+import NewProfile from '../components/NewProfile'
 import CartTotal from '../components/CartTotal'
 import CartButton from '../components/CartButton'
 import CartItemList from '../components/CartItemList'
 export default {
     name: 'Cart',
     components: {
+        LoadingOrder,
+        NewProfile,
         CartTotal,
         CartButton,
         CartItemList
     },
+    watch: {
+        vuexLoadingOrder() {}
+    },
     computed: {
         vuexNumberOfCartItemsData() {
             return this.$store.state.numberOfCartItems;
+        },
+        vuexLoadingOrder() {
+            return this.$store.state.loadingOrder;
+        },
+        vuexHasOrderData() {
+            return this.$store.state.hasOrder;
         }
     }
 }

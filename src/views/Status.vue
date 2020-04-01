@@ -6,8 +6,7 @@
     appear-active-class="custom-appear-active-class"
   >
     <div class="statusContainer">
-      <LoadingOrder v-if="vuexLoadingOrder === true" />
-      <p class="ordernumber">Orderummer <span class="ordernumberNumber">{{ vuexOrderData.orderNr }}</span></p>
+      <p class="ordernumber">Orderummer <span class="ordernumberNumber">#{{ vuexOrderData.orderNr }}</span></p>
       <div class="imageContainer">
         <img src="../assets/graphics/drone.svg" alt="Drone" class="droneImage">
       </div>
@@ -19,27 +18,11 @@
 </template>
 
 <script>
-import LoadingOrder from '../components/LoadingOrder'
 export default {
   name: 'Status',
-  components: {
-    LoadingOrder
-  },
-  mounted() {
-    this.$store.commit('showLoader', true);
-    setTimeout(()=>{ this.$store.dispatch('sendOrder'); }, 1000);
-  },
-  watch: {
-    vuexLoadingOrder() {
-
-    }
-  },
   computed: {
     vuexOrderData() {
       return this.$store.state.order;
-    },
-    vuexLoadingOrder() {
-        return this.$store.state.loadingOrder;
     }
   }
 }

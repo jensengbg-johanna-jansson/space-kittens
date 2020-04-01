@@ -3,7 +3,7 @@
         <transition name="msgSlideFade">
             <span class="emptyCartMsg" v-if="showMsg">Din kundvagn är tom</span>
         </transition>
-        <button class="cartButton" @click="sendOrder">Take my money!</button>
+        <button class="cartButton" @click="addOrder">Take my money!</button>
     </div>
 </template>
 
@@ -17,13 +17,31 @@ export default {
     },
     methods: {
         sendOrder() {
+            this.$store.commit('showLoader', true);
+            
+            this.$store.dispatch('sendOrder').then(() => {
+                this.$router.push('status');
+            }).catch(err => {
+                console.log(err)
+            })
+        },
+        addOrder() {
             if(this.vuexNumberOfCartItemsData === 0) {
                 this.showMsg = true;
                 setTimeout(()=>{ this.showMsg = false; }, 2000);
             } else {
                 this.showMsg = false;
-                this.$router.push('status');
+                    
+                if(this.vuexUuid != null) {
+                    this.sendOrder();
+                } else {
+                    this.$store.commit('setHasOrder', true);
+                    console.log('Uuid missing');
+                }
             }
+        },
+        resolve() {
+            console.log('Success');
         }
     },
     computed: {
@@ -32,6 +50,12 @@ export default {
         },
         vuexLoadingOrderData() {
             return this.$store.state.loadingOrder;
+        },
+        vuexUuid() {
+            return this.$store.state.uuid;
+        },
+        vuexOrderData() {
+            return this.$store.state.order;
         }
     }
 }
@@ -48,6 +72,7 @@ export default {
         text-align: center;
         text-decoration: none;
         border-radius: 5rem;
+        border: none;
         padding: 0.8rem 2.5rem;
         font-weight: bold;
         font-family: 'PT Serif', serif;
