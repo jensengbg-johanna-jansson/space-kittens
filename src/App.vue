@@ -6,7 +6,15 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  created() {
+    this.$store.dispatch('getMenu');
+
+    let uuid = JSON.parse(localStorage.getItem('airBeanUuid'));
+    if(uuid) {
+      this.$store.commit('setUuid', uuid);
+    }
+  }
 }
 </script>
 
