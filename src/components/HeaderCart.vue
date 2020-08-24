@@ -49,6 +49,8 @@ export default {
     .cartIcon {
         height: 20px;
         width: 20px;
+        background: none;
+        border: none;
     }
 
     .cartCounter {
